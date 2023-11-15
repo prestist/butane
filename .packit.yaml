@@ -2,7 +2,7 @@
 # https://packit.dev/docs/configuration/
 actions:
     post-upstream-clone:
-        - "wget https://src.fedoraproject.org/rpms/butane/blob/rawhide/f/butane.spec -O butane.spec"
+        - "wget https://src.fedoraproject.org/rpms/butane/raw/rawhide/f/butane.spec -O butane.spec"
 
 specfile_path: butane.spec
 

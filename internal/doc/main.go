@@ -60,7 +60,7 @@ import (
 	openshift4_9 "github.com/coreos/butane/config/openshift/v4_9"
 	r4e1_0 "github.com/coreos/butane/config/r4e/v1_0"
 	r4e1_1 "github.com/coreos/butane/config/r4e/v1_1"
-	r4e1_2_exp "github.com/coreos/butane/config/r4e/v1_2_exp"
+	r4e1_2 "github.com/coreos/butane/config/r4e/v1_2"
 )
 
 var (
@@ -144,7 +144,7 @@ func generate(dir string) error {
 			"r4e",
 			[]version{
 				// inverse order of website navbar
-				{"1.2.0-experimental", r4e1_2_exp.Config{}},
+				{"1.2.0-experimental", r4e1_2.Config{}},
 				{"1.0.0", r4e1_0.Config{}},
 				{"1.1.0", r4e1_1.Config{}},
 			},

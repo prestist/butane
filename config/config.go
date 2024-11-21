@@ -43,7 +43,7 @@ import (
 	openshift4_9 "github.com/coreos/butane/config/openshift/v4_9"
 	r4e1_0 "github.com/coreos/butane/config/r4e/v1_0"
 	r4e1_1 "github.com/coreos/butane/config/r4e/v1_1"
-	r4e1_2_exp "github.com/coreos/butane/config/r4e/v1_2_exp"
+	r4e1_2 "github.com/coreos/butane/config/r4e/v1_2"
 
 	"github.com/coreos/go-semver/semver"
 	"github.com/coreos/vcontext/report"
@@ -84,7 +84,7 @@ func init() {
 	RegisterTranslator("openshift", "4.18.0-experimental", openshift4_18_exp.ToConfigBytes)
 	RegisterTranslator("r4e", "1.0.0", r4e1_0.ToIgn3_3Bytes)
 	RegisterTranslator("r4e", "1.1.0", r4e1_1.ToIgn3_4Bytes)
-	RegisterTranslator("r4e", "1.2.0-experimental", r4e1_2_exp.ToIgn3_5Bytes)
+	RegisterTranslator("r4e", "1.2.0", r4e1_2.ToIgn3_5Bytes)
 	RegisterTranslator("fiot", "1.0.0", fiot1_0.ToIgn3_4Bytes)
 	RegisterTranslator("fiot", "1.1.0-experimental", fiot1_1_exp.ToIgn3_5Bytes)
 	RegisterTranslator("rhcos", "0.1.0", unsupportedRhcosVariant)

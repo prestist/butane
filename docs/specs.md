@@ -15,6 +15,7 @@ See the [Upgrading Configs](upgrading.md) page for instructions to update a conf
 We recommend that you always use the latest **stable** specification for your operating system to benefit from new features and bug fixes. The following **stable** specification versions are currently supported in Butane:
 
 - Fedora CoreOS (`fcos`)
+  - [v1.6.0](config-fcos-v1_6.md)
   - [v1.5.0](config-fcos-v1_5.md)
   - [v1.4.0](config-fcos-v1_4.md)
   - [v1.3.0](config-fcos-v1_3.md)
@@ -22,6 +23,7 @@ We recommend that you always use the latest **stable** specification for your op
   - [v1.1.0](config-fcos-v1_1.md)
   - [v1.0.0](config-fcos-v1_0.md)
 - Flatcar (`flatcar`)
+  - [v1.2.0](config-flatcar-v1_2.md)
   - [v1.1.0](config-flatcar-v1_1.md)
   - [v1.0.0](config-flatcar-v1_0.md)
 - OpenShift (`openshift`)
@@ -36,9 +38,11 @@ We recommend that you always use the latest **stable** specification for your op
   - [v4.9.0](config-openshift-v4_9.md)
   - [v4.8.0](config-openshift-v4_8.md)
 - RHEL for Edge (`r4e`)
+  - [v1.2.0](config-r4e-v1_2.md)
   - [v1.1.0](config-r4e-v1_1.md)
   - [v1.0.0](config-r4e-v1_0.md)
 - Fedora IoT (`fiot`)
+  - [v1.1.0](config-fiot-v1_1.md)
   - [v1.0.0](config-fiot-v1_0.md)
 
 ## Experimental specification versions

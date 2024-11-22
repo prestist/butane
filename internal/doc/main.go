@@ -42,11 +42,14 @@ import (
 	fcos1_4 "github.com/coreos/butane/config/fcos/v1_4"
 	fcos1_5 "github.com/coreos/butane/config/fcos/v1_5"
 	fcos1_6 "github.com/coreos/butane/config/fcos/v1_6"
+	fcos1_7_exp "github.com/coreos/butane/config/fcos/v1_7_exp"
 	fiot1_0 "github.com/coreos/butane/config/fiot/v1_0"
 	fiot1_1 "github.com/coreos/butane/config/fiot/v1_1"
+	fiot1_2_exp "github.com/coreos/butane/config/fiot/v1_2_exp"
 	flatcar1_0 "github.com/coreos/butane/config/flatcar/v1_0"
 	flatcar1_1 "github.com/coreos/butane/config/flatcar/v1_1"
 	flatcar1_2 "github.com/coreos/butane/config/flatcar/v1_2"
+	flatcar1_3_exp "github.com/coreos/butane/config/flatcar/v1_3_exp"
 	openshift4_10 "github.com/coreos/butane/config/openshift/v4_10"
 	openshift4_11 "github.com/coreos/butane/config/openshift/v4_11"
 	openshift4_12 "github.com/coreos/butane/config/openshift/v4_12"
@@ -61,6 +64,7 @@ import (
 	r4e1_0 "github.com/coreos/butane/config/r4e/v1_0"
 	r4e1_1 "github.com/coreos/butane/config/r4e/v1_1"
 	r4e1_2 "github.com/coreos/butane/config/r4e/v1_2"
+	r4e1_3_exp "github.com/coreos/butane/config/r4e/v1_3_exp"
 )
 
 var (
@@ -102,6 +106,7 @@ func generate(dir string) error {
 			"fcos",
 			[]version{
 				// inverse order of website navbar
+				{"1.7.0-experimental", fcos1_7_exp.Config{}},
 				{"1.0.0", fcos1_0.Config{}},
 				{"1.1.0", fcos1_1.Config{}},
 				{"1.2.0", fcos1_2.Config{}},
@@ -116,6 +121,7 @@ func generate(dir string) error {
 			"flatcar",
 			[]version{
 				// inverse order of website navbar
+				{"1.3.0-experimental", flatcar1_3_exp.Config{}},
 				{"1.0.0", flatcar1_0.Config{}},
 				{"1.1.0", flatcar1_1.Config{}},
 				{"1.2.0", flatcar1_2.Config{}},
@@ -144,9 +150,10 @@ func generate(dir string) error {
 			"r4e",
 			[]version{
 				// inverse order of website navbar
-				{"1.2.0-experimental", r4e1_2.Config{}},
+				{"1.3.0-experimental", r4e1_3_exp.Config{}},
 				{"1.0.0", r4e1_0.Config{}},
 				{"1.1.0", r4e1_1.Config{}},
+				{"1.2.0", r4e1_2.Config{}},
 			},
 		},
 		{
@@ -154,6 +161,7 @@ func generate(dir string) error {
 			"fiot",
 			[]version{
 				// inverse order of website navbar
+				{"1.2.0-experimental", fiot1_2_exp.Config{}},
 				{"1.0.0", fiot1_0.Config{}},
 				{"1.1.0", fiot1_1.Config{}},
 			},

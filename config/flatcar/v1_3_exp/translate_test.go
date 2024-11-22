@@ -69,7 +69,7 @@ func TestTranslation(t *testing.T) {
 			for _, entry := range test.entries {
 				expectedReport.AddOn(entry.path, entry.err, entry.kind)
 			}
-			actual, translations, r := test.in.ToIgn3_5Unvalidated(common.TranslateOptions{})
+			actual, translations, r := test.in.ToIgn3_6Unvalidated(common.TranslateOptions{})
 			if test.in.FieldFilters() != nil {
 				r.Merge(test.in.FieldFilters().Verify(actual))
 			}

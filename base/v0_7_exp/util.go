@@ -15,7 +15,7 @@
 package v0_7_exp
 
 import (
-	"github.com/coreos/ignition/v2/config/v3_5/types"
+	"github.com/coreos/ignition/v2/config/v3_6_experimental/types"
 )
 
 type nodeTracker struct {

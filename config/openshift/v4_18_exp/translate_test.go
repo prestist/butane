@@ -27,7 +27,7 @@ import (
 	"github.com/coreos/butane/translate"
 
 	"github.com/coreos/ignition/v2/config/util"
-	"github.com/coreos/ignition/v2/config/v3_5/types"
+	"github.com/coreos/ignition/v2/config/v3_6_experimental/types"
 	"github.com/coreos/vcontext/path"
 	"github.com/coreos/vcontext/report"
 	"github.com/stretchr/testify/assert"
@@ -52,7 +52,7 @@ func TestElidedFieldWarning(t *testing.T) {
 	expected.AddOnWarn(path.New("yaml", "openshift", "fips"), common.ErrFieldElided)
 	expected.AddOnWarn(path.New("yaml", "openshift", "kernel_type"), common.ErrFieldElided)
 
-	_, _, r := in.ToIgn3_5Unvalidated(common.TranslateOptions{})
+	_, _, r := in.ToIgn3_6Unvalidated(common.TranslateOptions{})
 	assert.Equal(t, expected, r, "report mismatch")
 }
 
@@ -84,7 +84,7 @@ func TestTranslateConfig(t *testing.T) {
 				Spec: result.Spec{
 					Config: types.Config{
 						Ignition: types.Ignition{
-							Version: "3.5.0",
+							Version: "3.6.0-experimental",
 						},
 					},
 				},
@@ -159,7 +159,7 @@ func TestTranslateConfig(t *testing.T) {
 				Spec: result.Spec{
 					Config: types.Config{
 						Ignition: types.Ignition{
-							Version: "3.5.0",
+							Version: "3.6.0-experimental",
 						},
 						Storage: types.Storage{
 							Filesystems: []types.Filesystem{
@@ -304,7 +304,7 @@ func TestTranslateConfig(t *testing.T) {
 				Spec: result.Spec{
 					Config: types.Config{
 						Ignition: types.Ignition{
-							Version: "3.5.0",
+							Version: "3.6.0-experimental",
 						},
 						Storage: types.Storage{
 							Filesystems: []types.Filesystem{

@@ -169,7 +169,7 @@ func TestTranslateInvalid(t *testing.T) {
 			for _, entry := range test.Entries {
 				expectedReport.AddOnError(entry.Path, entry.Err)
 			}
-			actual, translations, r := test.In.ToIgn3_5Unvalidated(common.TranslateOptions{})
+			actual, translations, r := test.In.ToIgn3_6Unvalidated(common.TranslateOptions{})
 			r.Merge(fieldFilters.Verify(actual))
 			r = confutil.TranslateReportPaths(r, translations)
 			baseutil.VerifyReport(t, test.In, r)

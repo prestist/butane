@@ -15,6 +15,9 @@
 package v0_5
 
 import (
+	v0_1 "github.com/coreos/butane/base/v0_1"
+	v0_2 "github.com/coreos/butane/base/v0_2"
+	v0_4 "github.com/coreos/butane/base/v0_4"
 	"fmt"
 	"net"
 	"os"
@@ -806,7 +809,7 @@ func TestTranslateMountUnit(t *testing.T) {
 					},
 				},
 				Systemd: Systemd{
-					Units: []Unit{
+					Units: []v0_1.Unit{
 						{
 							Name:    "var-lib-containers.mount",
 							Enabled: util.BoolToPtr(false),
@@ -869,7 +872,7 @@ RequiredBy=local-fs.target`),
 							Name:   "foo-bar",
 							Device: util.StrToPtr("/dev/bar"),
 							Clevis: Clevis{
-								Tang: []Tang{
+								Tang: []v0_4.Tang{
 									{
 										URL: "http://example.com",
 									},
@@ -995,7 +998,7 @@ RequiredBy=local-fs.target`),
 							Name:   "foo-bar",
 							Device: util.StrToPtr("/dev/bar"),
 							Clevis: Clevis{
-								Tang: []Tang{
+								Tang: []v0_4.Tang{
 									{
 										URL: "http://example.com",
 									},
@@ -1068,7 +1071,7 @@ RequiredBy=remote-fs.target`),
 					},
 				},
 				Systemd: Systemd{
-					Units: []Unit{
+					Units: []v0_1.Unit{
 						{
 							Name:     "var-lib-containers.mount",
 							Contents: util.StrToPtr("[Service]\nExecStart=/bin/false\n"),
@@ -1750,12 +1753,12 @@ func TestTranslateIgnition(t *testing.T) {
 		{
 			Ignition{
 				Config: IgnitionConfig{
-					Merge: []Resource{
+					Merge: []v0_2.Resource{
 						{
 							Inline: util.StrToPtr("xyzzy"),
 						},
 					},
-					Replace: Resource{
+					Replace: v0_2.Resource{
 						Inline: util.StrToPtr("xyzzy"),
 					},
 				},
@@ -1794,8 +1797,8 @@ func TestTranslateIgnition(t *testing.T) {
 		{
 			Ignition{
 				Security: Security{
-					TLS: TLS{
-						CertificateAuthorities: []Resource{
+					TLS: v0_1.TLS{
+						CertificateAuthorities: []v0_1.CaReference{
 							{
 								Inline: util.StrToPtr("xyzzy"),
 							},
@@ -1902,7 +1905,7 @@ func TestTranslateTang(t *testing.T) {
 							Name:   "foo-bar",
 							Device: util.StrToPtr("/dev/bar"),
 							Clevis: Clevis{
-								Tang: []Tang{
+								Tang: []v0_4.Tang{
 									{
 										URL:           "http://example.com",
 										Thumbprint:    util.StrToPtr("xyzzy"),

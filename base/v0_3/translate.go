@@ -22,6 +22,7 @@ import (
 	"strings"
 	"text/template"
 
+	v0_2 "github.com/coreos/butane/base/v0_2"
 	baseutil "github.com/coreos/butane/base/util"
 	"github.com/coreos/butane/config/common"
 	"github.com/coreos/butane/translate"
@@ -71,7 +72,6 @@ func (c Config) ToIgn3_2Unvalidated(options common.TranslateOptions) (types.Conf
 	tr.AddCustomTranslator(translateFile)
 	tr.AddCustomTranslator(translateDirectory)
 	tr.AddCustomTranslator(translateLink)
-	tr.AddCustomTranslator(translateResource)
 
 	tm, r := translate.Prefixed(tr, "ignition", &c.Ignition, &ret.Ignition)
 	tm.AddTranslation(path.New("yaml", "version"), path.New("json", "ignition", "version"))
@@ -92,14 +92,23 @@ func (c Config) ToIgn3_2Unvalidated(options common.TranslateOptions) (types.Conf
 	return ret, tm, r
 }
 
-func translateIgnition(from Ignition, options common.TranslateOptions) (to types.Ignition, tm translate.TranslationSet, r report.Report) {
+func translateIgnition(from v0_2.Ignition, options common.TranslateOptions) (to types.Ignition, tm translate.TranslationSet, r report.Report) {
 	tr := translate.NewTranslator("yaml", "json", options)
-	tr.AddCustomTranslator(translateResource)
+	tr.AddCustomTranslator(translateV0_2Resource)
+	tr.AddCustomTranslator(translateIgnitionConfig)
 	to.Version = types.MaxVersion.String()
 	tm, r = translate.Prefixed(tr, "config", &from.Config, &to.Config)
 	translate.MergeP(tr, tm, &r, "proxy", &from.Proxy, &to.Proxy)
 	translate.MergeP(tr, tm, &r, "security", &from.Security, &to.Security)
 	translate.MergeP(tr, tm, &r, "timeouts", &from.Timeouts, &to.Timeouts)
+	return
+}
+
+func translateIgnitionConfig(from v0_2.IgnitionConfig, options common.TranslateOptions) (to types.IgnitionConfig, tm translate.TranslationSet, r report.Report) {
+	tr := translate.NewTranslator("yaml", "json", options)
+	tr.AddCustomTranslator(translateV0_2Resource)
+	tm, r = translate.Prefixed(tr, "merge", &from.Merge, &to.Merge)
+	translate.MergeP(tr, tm, &r, "replace", &from.Replace, &to.Replace)
 	return
 }
 
@@ -168,6 +177,22 @@ func translateResource(from Resource, options common.TranslateOptions) (to types
 		}
 	}
 	return
+}
+
+// translateV0_2Resource translates v0_2.Resource (used by aliased types like IgnitionConfig)
+// by converting it to v0_3.Resource and delegating to translateResource
+func translateV0_2Resource(from v0_2.Resource, options common.TranslateOptions) (to types.Resource, tm translate.TranslationSet, r report.Report) {
+	// Convert v0_2.Resource to v0_3.Resource
+	// All field types are compatible because they're either primitives or aliased types
+	v3Res := Resource{
+		Compression:  from.Compression,
+		HTTPHeaders:  from.HTTPHeaders,
+		Source:       from.Source,
+		Inline:       from.Inline,
+		Local:        from.Local,
+		Verification: from.Verification,
+	}
+	return translateResource(v3Res, options)
 }
 
 func translateDirectory(from Directory, options common.TranslateOptions) (to types.Directory, tm translate.TranslationSet, r report.Report) {

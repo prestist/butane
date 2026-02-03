@@ -15,6 +15,7 @@
 package v1_2
 
 import (
+	v0_1 "github.com/coreos/butane/base/v0_1"
 	"fmt"
 	"testing"
 
@@ -60,7 +61,7 @@ func TestTranslateConfig(t *testing.T) {
 						Disks: []base.Disk{
 							{
 								Device: "/dev/vda",
-								Partitions: []base.Partition{
+								Partitions: []v0_1.Partition{
 									{
 										Label:   util.StrToPtr("root"),
 										SizeMiB: util.IntToPtr(12000),

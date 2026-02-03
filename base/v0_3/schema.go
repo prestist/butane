@@ -14,13 +14,48 @@
 
 package v0_3
 
-type Clevis struct {
-	Custom    *Custom `yaml:"custom"`
-	Tang      []Tang  `yaml:"tang"`
-	Threshold *int    `yaml:"threshold"`
-	Tpm2      *bool   `yaml:"tpm2"`
+import (
+	v0_2 "github.com/coreos/butane/base/v0_2"
+)
+
+// Type aliases for types unchanged from v0_2 that have NO methods
+type Device = v0_2.Device
+// Disk is redefined below because it contains Partition which was modified in v0_3
+type Dropin = v0_2.Dropin
+type FilesystemOption = v0_2.FilesystemOption
+type Group = v0_2.Group
+type HTTPHeader = v0_2.HTTPHeader
+type HTTPHeaders = v0_2.HTTPHeaders
+type Ignition = v0_2.Ignition
+type IgnitionConfig = v0_2.IgnitionConfig
+// Link is redefined below because it has methods
+type NodeGroup = v0_2.NodeGroup
+type NodeUser = v0_2.NodeUser
+// Passwd is redefined below because it contains PasswdGroup and PasswdUser which were modified in v0_3
+type Passwd struct {
+	Groups []PasswdGroup `yaml:"groups"`
+	Users  []PasswdUser  `yaml:"users"`
 }
 
+// Disk is redefined because it contains Partition which was modified in v0_3
+type Disk struct {
+	Device     string      `yaml:"device"`
+	Partitions []Partition `yaml:"partitions"`
+	WipeTable  *bool       `yaml:"wipe_table"`
+}
+
+type Proxy = v0_2.Proxy
+type Raid = v0_2.Raid
+type RaidOption = v0_2.RaidOption
+type SSHAuthorizedKey = v0_2.SSHAuthorizedKey
+type Security = v0_2.Security
+type Systemd = v0_2.Systemd
+type TLS = v0_2.TLS
+type Timeouts = v0_2.Timeouts
+type Unit = v0_2.Unit
+type Verification = v0_2.Verification
+
+// Config must be defined here (not aliased) because it has methods
 type Config struct {
 	Version  string   `yaml:"version"`
 	Variant  string   `yaml:"variant"`
@@ -30,14 +65,7 @@ type Config struct {
 	Systemd  Systemd  `yaml:"systemd"`
 }
 
-type Custom struct {
-	Config       string `yaml:"config"`
-	NeedsNetwork *bool  `yaml:"needs_network"`
-	Pin          string `yaml:"pin"`
-}
-
-type Device string
-
+// Directory must be defined here (not aliased) because it has methods
 type Directory struct {
 	Group     NodeGroup `yaml:"group"`
 	Overwrite *bool     `yaml:"overwrite"`
@@ -46,17 +74,7 @@ type Directory struct {
 	Mode      *int      `yaml:"mode"`
 }
 
-type Disk struct {
-	Device     string      `yaml:"device"`
-	Partitions []Partition `yaml:"partitions"`
-	WipeTable  *bool       `yaml:"wipe_table"`
-}
-
-type Dropin struct {
-	Contents *string `yaml:"contents"`
-	Name     string  `yaml:"name"`
-}
-
+// File must be defined here (not aliased) because it has methods
 type File struct {
 	Group     NodeGroup  `yaml:"group"`
 	Overwrite *bool      `yaml:"overwrite"`
@@ -67,6 +85,7 @@ type File struct {
 	Mode      *int       `yaml:"mode"`
 }
 
+// Filesystem must be defined here (not aliased) because it has methods
 type Filesystem struct {
 	Device         string   `yaml:"device"`
 	Format         *string  `yaml:"format"`
@@ -79,29 +98,7 @@ type Filesystem struct {
 	WithMountUnit  *bool    `yaml:"with_mount_unit" butane:"auto_skip"` // Added, not in Ignition spec
 }
 
-type FilesystemOption string
-
-type Group string
-
-type HTTPHeader struct {
-	Name  string  `yaml:"name"`
-	Value *string `yaml:"value"`
-}
-
-type HTTPHeaders []HTTPHeader
-
-type Ignition struct {
-	Config   IgnitionConfig `yaml:"config"`
-	Proxy    Proxy          `yaml:"proxy"`
-	Security Security       `yaml:"security"`
-	Timeouts Timeouts       `yaml:"timeouts"`
-}
-
-type IgnitionConfig struct {
-	Merge   []Resource `yaml:"merge"`
-	Replace Resource   `yaml:"replace"`
-}
-
+// Link must be defined here (not aliased) because it has methods
 type Link struct {
 	Group     NodeGroup `yaml:"group"`
 	Overwrite *bool     `yaml:"overwrite"`
@@ -109,6 +106,36 @@ type Link struct {
 	User      NodeUser  `yaml:"user"`
 	Hard      *bool     `yaml:"hard"`
 	Target    string    `yaml:"target"`
+}
+
+// Resource must be defined here (not aliased) because it has methods
+type Resource struct {
+	Compression  *string      `yaml:"compression"`
+	HTTPHeaders  HTTPHeaders  `yaml:"http_headers"`
+	Source       *string      `yaml:"source"`
+	Inline       *string      `yaml:"inline"` // Added, not in ignition spec
+	Local        *string      `yaml:"local"`  // Added, not in ignition spec
+	Verification Verification `yaml:"verification"`
+}
+
+// Tree must be defined here (not aliased) because it has methods
+type Tree struct {
+	Local string  `yaml:"local"`
+	Path  *string `yaml:"path"`
+}
+
+// New types in v0_3
+type Clevis struct {
+	Custom    *Custom `yaml:"custom"`
+	Tang      []Tang  `yaml:"tang"`
+	Threshold *int    `yaml:"threshold"`
+	Tpm2      *bool   `yaml:"tpm2"`
+}
+
+type Custom struct {
+	Config       string `yaml:"config"`
+	NeedsNetwork *bool  `yaml:"needs_network"`
+	Pin          string `yaml:"pin"`
 }
 
 type Luks struct {
@@ -124,16 +151,12 @@ type Luks struct {
 
 type LuksOption string
 
-type NodeGroup struct {
-	ID   *int    `yaml:"id"`
-	Name *string `yaml:"name"`
+type Tang struct {
+	Thumbprint *string `yaml:"thumbprint"`
+	URL        string  `yaml:"url"`
 }
 
-type NodeUser struct {
-	ID   *int    `yaml:"id"`
-	Name *string `yaml:"name"`
-}
-
+// Modified types in v0_3
 type Partition struct {
 	GUID               *string `yaml:"guid"`
 	Label              *string `yaml:"label"`
@@ -144,11 +167,6 @@ type Partition struct {
 	StartMiB           *int    `yaml:"start_mib"`
 	TypeGUID           *string `yaml:"type_guid"`
 	WipePartitionEntry *bool   `yaml:"wipe_partition_entry"`
-}
-
-type Passwd struct {
-	Groups []PasswdGroup `yaml:"groups"`
-	Users  []PasswdUser  `yaml:"users"`
 }
 
 type PasswdGroup struct {
@@ -176,37 +194,6 @@ type PasswdUser struct {
 	UID               *int               `yaml:"uid"`
 }
 
-type Proxy struct {
-	HTTPProxy  *string  `yaml:"http_proxy"`
-	HTTPSProxy *string  `yaml:"https_proxy"`
-	NoProxy    []string `yaml:"no_proxy"`
-}
-
-type Raid struct {
-	Devices []Device     `yaml:"devices"`
-	Level   string       `yaml:"level"`
-	Name    string       `yaml:"name"`
-	Options []RaidOption `yaml:"options"`
-	Spares  *int         `yaml:"spares"`
-}
-
-type RaidOption string
-
-type Resource struct {
-	Compression  *string      `yaml:"compression"`
-	HTTPHeaders  HTTPHeaders  `yaml:"http_headers"`
-	Source       *string      `yaml:"source"`
-	Inline       *string      `yaml:"inline"` // Added, not in ignition spec
-	Local        *string      `yaml:"local"`  // Added, not in ignition spec
-	Verification Verification `yaml:"verification"`
-}
-
-type SSHAuthorizedKey string
-
-type Security struct {
-	TLS TLS `yaml:"tls"`
-}
-
 type Storage struct {
 	Directories []Directory  `yaml:"directories"`
 	Disks       []Disk       `yaml:"disks"`
@@ -216,39 +203,4 @@ type Storage struct {
 	Luks        []Luks       `yaml:"luks"`
 	Raid        []Raid       `yaml:"raid"`
 	Trees       []Tree       `yaml:"trees" butane:"auto_skip"` // Added, not in ignition spec
-}
-
-type Systemd struct {
-	Units []Unit `yaml:"units"`
-}
-
-type Tang struct {
-	Thumbprint *string `yaml:"thumbprint"`
-	URL        string  `yaml:"url"`
-}
-
-type TLS struct {
-	CertificateAuthorities []Resource `yaml:"certificate_authorities"`
-}
-
-type Timeouts struct {
-	HTTPResponseHeaders *int `yaml:"http_response_headers"`
-	HTTPTotal           *int `yaml:"http_total"`
-}
-
-type Tree struct {
-	Local string  `yaml:"local"`
-	Path  *string `yaml:"path"`
-}
-
-type Unit struct {
-	Contents *string  `yaml:"contents"`
-	Dropins  []Dropin `yaml:"dropins"`
-	Enabled  *bool    `yaml:"enabled"`
-	Mask     *bool    `yaml:"mask"`
-	Name     string   `yaml:"name"`
-}
-
-type Verification struct {
-	Hash *string `yaml:"hash"`
 }

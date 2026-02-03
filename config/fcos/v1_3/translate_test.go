@@ -15,6 +15,7 @@
 package v1_3
 
 import (
+	v0_1 "github.com/coreos/butane/base/v0_1"
 	"fmt"
 	"testing"
 
@@ -62,7 +63,7 @@ func TestTranslateBootDevice(t *testing.T) {
 						Disks: []base.Disk{
 							{
 								Device: "/dev/vda",
-								Partitions: []base.Partition{
+								Partitions: []v0_1.Partition{
 									{
 										Label:   util.StrToPtr("root"),
 										SizeMiB: util.IntToPtr(12000),
@@ -1159,7 +1160,7 @@ func TestTranslateBootDevice(t *testing.T) {
 						Disks: []base.Disk{
 							{
 								Device: "/dev/vda",
-								Partitions: []base.Partition{
+								Partitions: []v0_1.Partition{
 									{
 										Label:   util.StrToPtr("root-1"),
 										SizeMiB: util.IntToPtr(8192),
@@ -1168,7 +1169,7 @@ func TestTranslateBootDevice(t *testing.T) {
 							},
 							{
 								Device: "/dev/vdb",
-								Partitions: []base.Partition{
+								Partitions: []v0_1.Partition{
 									{
 										Label:   util.StrToPtr("root-2"),
 										SizeMiB: util.IntToPtr(8192),

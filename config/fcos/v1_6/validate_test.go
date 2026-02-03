@@ -15,6 +15,7 @@
 package v1_6
 
 import (
+	v0_1 "github.com/coreos/butane/base/v0_1"
 	"fmt"
 	"testing"
 
@@ -552,7 +553,7 @@ func TestValidateConfig(t *testing.T) {
 							{
 								Device:    "/dev/vda",
 								WipeTable: util.BoolToPtr(true),
-								Partitions: []base.Partition{
+								Partitions: []v0_1.Partition{
 									{
 										Label: util.StrToPtr("foo"),
 									},
@@ -572,7 +573,7 @@ func TestValidateConfig(t *testing.T) {
 							{
 								Device:    rootDevice,
 								WipeTable: util.BoolToPtr(false),
-								Partitions: []base.Partition{
+								Partitions: []v0_1.Partition{
 									{
 										Label: util.StrToPtr("bar"),
 									},
@@ -591,7 +592,7 @@ func TestValidateConfig(t *testing.T) {
 						Disks: []base.Disk{
 							{
 								Device: "/dev/vda",
-								Partitions: []base.Partition{
+								Partitions: []v0_1.Partition{
 									{
 										Label: util.StrToPtr("foo"),
 									},
@@ -613,7 +614,7 @@ func TestValidateConfig(t *testing.T) {
 							{
 								Device:    "/dev/vda",
 								WipeTable: util.BoolToPtr(false),
-								Partitions: []base.Partition{
+								Partitions: []v0_1.Partition{
 									{
 										Label: util.StrToPtr("foo"),
 									},

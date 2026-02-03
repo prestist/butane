@@ -14,23 +14,42 @@
 
 package v0_7_exp
 
-type Cex struct {
-	Enabled *bool `yaml:"enabled"`
-}
+import (
+	v0_6 "github.com/coreos/butane/base/v0_6"
+)
 
-type Clevis struct {
-	Custom    ClevisCustom `yaml:"custom"`
-	Tang      []Tang       `yaml:"tang"`
-	Threshold *int         `yaml:"threshold"`
-	Tpm2      *bool        `yaml:"tpm2"`
-}
+// Type aliases for types unchanged from v0_6 that have NO methods
+type Cex = v0_6.Cex
+type Clevis = v0_6.Clevis
+type ClevisCustom = v0_6.ClevisCustom
+type Device = v0_6.Device
+type Disk = v0_6.Disk
+type Group = v0_6.Group
+type HTTPHeader = v0_6.HTTPHeader
+type HTTPHeaders = v0_6.HTTPHeaders
+type Ignition = v0_6.Ignition
+type IgnitionConfig = v0_6.IgnitionConfig
+type KernelArgument = v0_6.KernelArgument
+type KernelArguments = v0_6.KernelArguments
+type Link = v0_6.Link
+type Luks = v0_6.Luks
+type NodeGroup = v0_6.NodeGroup
+type NodeUser = v0_6.NodeUser
+type Partition = v0_6.Partition
+type Passwd = v0_6.Passwd
+type PasswdGroup = v0_6.PasswdGroup
+type PasswdUser = v0_6.PasswdUser
+type Proxy = v0_6.Proxy
+type Raid = v0_6.Raid
+type SSHAuthorizedKey = v0_6.SSHAuthorizedKey
+type Security = v0_6.Security
+type Systemd = v0_6.Systemd
+type Tang = v0_6.Tang
+type TLS = v0_6.TLS
+type Timeouts = v0_6.Timeouts
+type Verification = v0_6.Verification
 
-type ClevisCustom struct {
-	Config       *string `yaml:"config"`
-	NeedsNetwork *bool   `yaml:"needs_network"`
-	Pin          *string `yaml:"pin"`
-}
-
+// Types that have methods must be defined (not aliased) even if identical to previous version
 type Config struct {
 	Version         string          `yaml:"version"`
 	Variant         string          `yaml:"variant"`
@@ -41,20 +60,12 @@ type Config struct {
 	Systemd         Systemd         `yaml:"systemd"`
 }
 
-type Device string
-
 type Directory struct {
 	Group     NodeGroup `yaml:"group"`
 	Overwrite *bool     `yaml:"overwrite"`
 	Path      string    `yaml:"path"`
 	User      NodeUser  `yaml:"user"`
 	Mode      *int      `yaml:"mode"`
-}
-
-type Disk struct {
-	Device     string      `yaml:"device"`
-	Partitions []Partition `yaml:"partitions"`
-	WipeTable  *bool       `yaml:"wipe_table"`
 }
 
 type Dropin struct {
@@ -85,124 +96,6 @@ type Filesystem struct {
 	WithMountUnit  *bool    `yaml:"with_mount_unit" butane:"auto_skip"` // Added, not in Ignition spec
 }
 
-type Group string
-
-type HTTPHeader struct {
-	Name  string  `yaml:"name"`
-	Value *string `yaml:"value"`
-}
-
-type HTTPHeaders []HTTPHeader
-
-type Ignition struct {
-	Config   IgnitionConfig `yaml:"config"`
-	Proxy    Proxy          `yaml:"proxy"`
-	Security Security       `yaml:"security"`
-	Timeouts Timeouts       `yaml:"timeouts"`
-}
-
-type IgnitionConfig struct {
-	Merge   []Resource `yaml:"merge"`
-	Replace Resource   `yaml:"replace"`
-}
-
-type KernelArgument string
-
-type KernelArguments struct {
-	ShouldExist    []KernelArgument `yaml:"should_exist"`
-	ShouldNotExist []KernelArgument `yaml:"should_not_exist"`
-}
-
-type Link struct {
-	Group     NodeGroup `yaml:"group"`
-	Overwrite *bool     `yaml:"overwrite"`
-	Path      string    `yaml:"path"`
-	User      NodeUser  `yaml:"user"`
-	Hard      *bool     `yaml:"hard"`
-	Target    *string   `yaml:"target"`
-}
-
-type Luks struct {
-	Cex         Cex      `yaml:"cex"`
-	Clevis      Clevis   `yaml:"clevis"`
-	Device      *string  `yaml:"device"`
-	Discard     *bool    `yaml:"discard"`
-	KeyFile     Resource `yaml:"key_file"`
-	Label       *string  `yaml:"label"`
-	Name        string   `yaml:"name"`
-	OpenOptions []string `yaml:"open_options"`
-	Options     []string `yaml:"options"`
-	UUID        *string  `yaml:"uuid"`
-	WipeVolume  *bool    `yaml:"wipe_volume"`
-}
-
-type NodeGroup struct {
-	ID   *int    `yaml:"id"`
-	Name *string `yaml:"name"`
-}
-
-type NodeUser struct {
-	ID   *int    `yaml:"id"`
-	Name *string `yaml:"name"`
-}
-
-type Partition struct {
-	GUID               *string `yaml:"guid"`
-	Label              *string `yaml:"label"`
-	Number             int     `yaml:"number"`
-	Resize             *bool   `yaml:"resize"`
-	ShouldExist        *bool   `yaml:"should_exist"`
-	SizeMiB            *int    `yaml:"size_mib"`
-	StartMiB           *int    `yaml:"start_mib"`
-	TypeGUID           *string `yaml:"type_guid"`
-	WipePartitionEntry *bool   `yaml:"wipe_partition_entry"`
-}
-
-type Passwd struct {
-	Groups []PasswdGroup `yaml:"groups"`
-	Users  []PasswdUser  `yaml:"users"`
-}
-
-type PasswdGroup struct {
-	Gid          *int    `yaml:"gid"`
-	Name         string  `yaml:"name"`
-	PasswordHash *string `yaml:"password_hash"`
-	ShouldExist  *bool   `yaml:"should_exist"`
-	System       *bool   `yaml:"system"`
-}
-
-type PasswdUser struct {
-	Gecos                  *string            `yaml:"gecos"`
-	Groups                 []Group            `yaml:"groups"`
-	HomeDir                *string            `yaml:"home_dir"`
-	Name                   string             `yaml:"name"`
-	NoCreateHome           *bool              `yaml:"no_create_home"`
-	NoLogInit              *bool              `yaml:"no_log_init"`
-	NoUserGroup            *bool              `yaml:"no_user_group"`
-	PasswordHash           *string            `yaml:"password_hash"`
-	PrimaryGroup           *string            `yaml:"primary_group"`
-	ShouldExist            *bool              `yaml:"should_exist"`
-	SSHAuthorizedKeys      []SSHAuthorizedKey `yaml:"ssh_authorized_keys"`
-	SSHAuthorizedKeysLocal []string           `yaml:"ssh_authorized_keys_local"`
-	Shell                  *string            `yaml:"shell"`
-	System                 *bool              `yaml:"system"`
-	UID                    *int               `yaml:"uid"`
-}
-
-type Proxy struct {
-	HTTPProxy  *string  `yaml:"http_proxy"`
-	HTTPSProxy *string  `yaml:"https_proxy"`
-	NoProxy    []string `yaml:"no_proxy"`
-}
-
-type Raid struct {
-	Devices []Device `yaml:"devices"`
-	Level   *string  `yaml:"level"`
-	Name    string   `yaml:"name"`
-	Options []string `yaml:"options"`
-	Spares  *int     `yaml:"spares"`
-}
-
 type Resource struct {
 	Compression  *string      `yaml:"compression"`
 	HTTPHeaders  HTTPHeaders  `yaml:"http_headers"`
@@ -210,51 +103,6 @@ type Resource struct {
 	Inline       *string      `yaml:"inline"` // Added, not in ignition spec
 	Local        *string      `yaml:"local"`  // Added, not in ignition spec
 	Verification Verification `yaml:"verification"`
-}
-
-type SSHAuthorizedKey string
-
-type Security struct {
-	TLS TLS `yaml:"tls"`
-}
-
-type Storage struct {
-	Directories []Directory  `yaml:"directories"`
-	Disks       []Disk       `yaml:"disks"`
-	Files       []File       `yaml:"files"`
-	Filesystems []Filesystem `yaml:"filesystems"`
-	Links       []Link       `yaml:"links"`
-	Luks        []Luks       `yaml:"luks"`
-	Raid        []Raid       `yaml:"raid"`
-	Trees       []Tree       `yaml:"trees" butane:"auto_skip"` // Added, not in ignition spec
-}
-
-type Systemd struct {
-	Units []Unit `yaml:"units"`
-}
-
-type Tang struct {
-	Thumbprint    *string `yaml:"thumbprint"`
-	URL           string  `yaml:"url"`
-	Advertisement *string `yaml:"advertisement"`
-}
-
-type TLS struct {
-	CertificateAuthorities []Resource `yaml:"certificate_authorities"`
-}
-
-type Timeouts struct {
-	HTTPResponseHeaders *int `yaml:"http_response_headers"`
-	HTTPTotal           *int `yaml:"http_total"`
-}
-
-type Tree struct {
-	Group    NodeGroup `yaml:"group"`
-	Local    string    `yaml:"local"`
-	Path     *string   `yaml:"path"`
-	User     NodeUser  `yaml:"user"`
-	FileMode *int      `yaml:"file_mode"`
-	DirMode  *int      `yaml:"dir_mode"`
 }
 
 type Unit struct {
@@ -266,6 +114,24 @@ type Unit struct {
 	Name          string   `yaml:"name"`
 }
 
-type Verification struct {
-	Hash *string `yaml:"hash"`
+// Storage must be redefined to use local Tree type
+type Storage struct {
+	Directories []Directory  `yaml:"directories"`
+	Disks       []Disk       `yaml:"disks"`
+	Files       []File       `yaml:"files"`
+	Filesystems []Filesystem `yaml:"filesystems"`
+	Links       []Link       `yaml:"links"`
+	Luks        []Luks       `yaml:"luks"`
+	Raid        []Raid       `yaml:"raid"`
+	Trees       []Tree       `yaml:"trees" butane:"auto_skip"` // Added, not in ignition spec
+}
+
+// Tree is the only type that changed in v0_7_exp
+type Tree struct {
+	Group    NodeGroup `yaml:"group"`
+	Local    string    `yaml:"local"`
+	Path     *string   `yaml:"path"`
+	User     NodeUser  `yaml:"user"`
+	FileMode *int      `yaml:"file_mode"`
+	DirMode  *int      `yaml:"dir_mode"`
 }

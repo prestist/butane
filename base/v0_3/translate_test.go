@@ -24,6 +24,7 @@ import (
 	"strings"
 	"testing"
 
+	v0_2 "github.com/coreos/butane/base/v0_2"
 	baseutil "github.com/coreos/butane/base/util"
 	"github.com/coreos/butane/config/common"
 	confutil "github.com/coreos/butane/config/util"
@@ -1665,12 +1666,12 @@ func TestTranslateIgnition(t *testing.T) {
 		{
 			Ignition{
 				Config: IgnitionConfig{
-					Merge: []Resource{
+					Merge: []v0_2.Resource{
 						{
 							Inline: util.StrToPtr("xyzzy"),
 						},
 					},
-					Replace: Resource{
+					Replace: v0_2.Resource{
 						Inline: util.StrToPtr("xyzzy"),
 					},
 				},
@@ -1710,7 +1711,7 @@ func TestTranslateIgnition(t *testing.T) {
 			Ignition{
 				Security: Security{
 					TLS: TLS{
-						CertificateAuthorities: []Resource{
+						CertificateAuthorities: []v0_2.Resource{
 							{
 								Inline: util.StrToPtr("xyzzy"),
 							},

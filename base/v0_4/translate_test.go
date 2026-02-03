@@ -15,6 +15,8 @@
 package v0_4
 
 import (
+	v0_1 "github.com/coreos/butane/base/v0_1"
+	v0_2 "github.com/coreos/butane/base/v0_2"
 	"fmt"
 	"net"
 	"os"
@@ -1750,12 +1752,12 @@ func TestTranslateIgnition(t *testing.T) {
 		{
 			Ignition{
 				Config: IgnitionConfig{
-					Merge: []Resource{
+					Merge: []v0_2.Resource{
 						{
 							Inline: util.StrToPtr("xyzzy"),
 						},
 					},
-					Replace: Resource{
+					Replace: v0_2.Resource{
 						Inline: util.StrToPtr("xyzzy"),
 					},
 				},
@@ -1794,8 +1796,8 @@ func TestTranslateIgnition(t *testing.T) {
 		{
 			Ignition{
 				Security: Security{
-					TLS: TLS{
-						CertificateAuthorities: []Resource{
+					TLS: v0_1.TLS{
+						CertificateAuthorities: []v0_1.CaReference{
 							{
 								Inline: util.StrToPtr("xyzzy"),
 							},

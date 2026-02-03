@@ -15,6 +15,7 @@
 package v4_9
 
 import (
+	v0_1 "github.com/coreos/butane/base/v0_1"
 	"fmt"
 	"testing"
 
@@ -395,7 +396,7 @@ func TestValidateSupport(t *testing.T) {
 				Config: fcos.Config{
 					Config: base.Config{
 						Passwd: base.Passwd{
-							Users: []base.PasswdUser{
+							Users: []v0_1.PasswdUser{
 								{
 									Name:              "core",
 									SSHAuthorizedKeys: []base.SSHAuthorizedKey{"value"},
@@ -526,7 +527,7 @@ func TestValidateSupport(t *testing.T) {
 							},
 						},
 						Passwd: base.Passwd{
-							Users: []base.PasswdUser{
+							Users: []v0_1.PasswdUser{
 								{
 									Name:  "core",
 									Gecos: util.StrToPtr("mercury delay line"),
@@ -549,7 +550,7 @@ func TestValidateSupport(t *testing.T) {
 									Name: "bovik",
 								},
 							},
-							Groups: []base.PasswdGroup{
+							Groups: []v0_1.PasswdGroup{
 								{
 									Name: "mock",
 								},

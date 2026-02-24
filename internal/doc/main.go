@@ -42,7 +42,8 @@ import (
 	fcos1_4 "github.com/coreos/butane/config/fcos/v1_4"
 	fcos1_5 "github.com/coreos/butane/config/fcos/v1_5"
 	fcos1_6 "github.com/coreos/butane/config/fcos/v1_6"
-	fcos1_7_exp "github.com/coreos/butane/config/fcos/v1_7_exp"
+	fcos1_7 "github.com/coreos/butane/config/fcos/v1_7"
+	fcos1_8_exp "github.com/coreos/butane/config/fcos/v1_8_exp"
 	fiot1_0 "github.com/coreos/butane/config/fiot/v1_0"
 	fiot1_1_exp "github.com/coreos/butane/config/fiot/v1_1_exp"
 	flatcar1_0 "github.com/coreos/butane/config/flatcar/v1_0"
@@ -107,7 +108,7 @@ func generate(dir string) error {
 			"fcos",
 			[]version{
 				// inverse order of website navbar
-				{"1.7.0-experimental", fcos1_7_exp.Config{}},
+				{"1.8.0-experimental", fcos1_8_exp.Config{}},
 				{"1.0.0", fcos1_0.Config{}},
 				{"1.1.0", fcos1_1.Config{}},
 				{"1.2.0", fcos1_2.Config{}},
@@ -115,6 +116,7 @@ func generate(dir string) error {
 				{"1.4.0", fcos1_4.Config{}},
 				{"1.5.0", fcos1_5.Config{}},
 				{"1.6.0", fcos1_6.Config{}},
+				{"1.7.0", fcos1_7.Config{}},
 			},
 		},
 		{

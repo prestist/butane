@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.)
 
-package v0_7_exp
+package v0_7
 
 import (
 	common "github.com/coreos/butane/config/common"

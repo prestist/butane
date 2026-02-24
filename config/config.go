@@ -78,7 +78,7 @@ func init() {
 	RegisterTranslator("fcos", "1.8.0-experimental", fcos1_8_exp.ToIgn3_7Bytes)
 	RegisterTranslator("flatcar", "1.0.0", flatcar1_0.ToIgn3_3Bytes)
 	RegisterTranslator("flatcar", "1.1.0", flatcar1_1.ToIgn3_4Bytes)
-	RegisterTranslator("flatcar", "1.2.0-experimental", flatcar1_2_exp.ToIgn3_6Bytes)
+	RegisterTranslator("flatcar", "1.2.0-experimental", flatcar1_2_exp.ToIgn3_7Bytes)
 	RegisterTranslator("openshift", "4.8.0", openshift4_8.ToConfigBytes)
 	RegisterTranslator("openshift", "4.9.0", openshift4_9.ToConfigBytes)
 	RegisterTranslator("openshift", "4.10.0", openshift4_10.ToConfigBytes)
@@ -96,9 +96,9 @@ func init() {
 	RegisterTranslator("openshift", "4.22.0-experimental", openshift4_22_exp.ToConfigBytes)
 	RegisterTranslator("r4e", "1.0.0", r4e1_0.ToIgn3_3Bytes)
 	RegisterTranslator("r4e", "1.1.0", r4e1_1.ToIgn3_4Bytes)
-	RegisterTranslator("r4e", "1.2.0-experimental", r4e1_2_exp.ToIgn3_6Bytes)
+	RegisterTranslator("r4e", "1.2.0-experimental", r4e1_2_exp.ToIgn3_7Bytes)
 	RegisterTranslator("fiot", "1.0.0", fiot1_0.ToIgn3_4Bytes)
-	RegisterTranslator("fiot", "1.1.0-experimental", fiot1_1_exp.ToIgn3_6Bytes)
+	RegisterTranslator("fiot", "1.1.0-experimental", fiot1_1_exp.ToIgn3_7Bytes)
 	RegisterTranslator("rhcos", "0.1.0", unsupportedRhcosVariant)
 }
 

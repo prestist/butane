@@ -13,6 +13,10 @@ Occasionally, changes are made to Fedora CoreOS Butane configs (those that speci
 1. TOC
 {:toc}
 
+## From Version 1.6.0 to Version 1.7.0
+
+There are no breaking changes between versions 1.6.0 and 1.7.0 of the `fcos` configuration specification. Any valid 1.6.0 configuration can be updated to a 1.7.0 configuration by changing the version string in the config.
+
 ## From Version 1.5.0 to Version 1.6.0
 
 There are no breaking changes between versions 1.5.0 and 1.6.0 of the `fcos` configuration specification. Any valid 1.5.0 configuration can be updated to a 1.6.0 configuration by changing the version string in the config.

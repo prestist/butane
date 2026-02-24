@@ -16,6 +16,8 @@ nav_order: 9
 
 ### Docs changes
 
+- Re-vendor latest ignition release; 3.6.0-experimental becomes 3.6.0
+
 
 ## Butane 0.26.0 (2026-01-16)
 

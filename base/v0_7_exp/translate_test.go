@@ -30,7 +30,7 @@ import (
 	"github.com/coreos/butane/translate"
 
 	"github.com/coreos/ignition/v2/config/util"
-	"github.com/coreos/ignition/v2/config/v3_6_experimental/types"
+	"github.com/coreos/ignition/v2/config/v3_6/types"
 	"github.com/coreos/vcontext/path"
 	"github.com/coreos/vcontext/report"
 	"github.com/stretchr/testify/assert"
@@ -816,7 +816,7 @@ func TestTranslateMountUnit(t *testing.T) {
 			},
 			types.Config{
 				Ignition: types.Ignition{
-					Version: "3.6.0-experimental",
+					Version: "3.6.0",
 				},
 				Storage: types.Storage{
 					Filesystems: []types.Filesystem{
@@ -881,7 +881,7 @@ RequiredBy=local-fs.target`),
 			},
 			types.Config{
 				Ignition: types.Ignition{
-					Version: "3.6.0-experimental",
+					Version: "3.6.0",
 				},
 				Storage: types.Storage{
 					Filesystems: []types.Filesystem{
@@ -945,7 +945,7 @@ RequiredBy=remote-fs.target`),
 			},
 			types.Config{
 				Ignition: types.Ignition{
-					Version: "3.6.0-experimental",
+					Version: "3.6.0",
 				},
 				Storage: types.Storage{
 					Filesystems: []types.Filesystem{
@@ -1007,7 +1007,7 @@ RequiredBy=local-fs.target`),
 			},
 			types.Config{
 				Ignition: types.Ignition{
-					Version: "3.6.0-experimental",
+					Version: "3.6.0",
 				},
 				Storage: types.Storage{
 					Filesystems: []types.Filesystem{
@@ -1078,7 +1078,7 @@ RequiredBy=remote-fs.target`),
 			},
 			types.Config{
 				Ignition: types.Ignition{
-					Version: "3.6.0-experimental",
+					Version: "3.6.0",
 				},
 				Storage: types.Storage{
 					Filesystems: []types.Filesystem{
@@ -1115,7 +1115,7 @@ RequiredBy=remote-fs.target`),
 			},
 			types.Config{
 				Ignition: types.Ignition{
-					Version: "3.6.0-experimental",
+					Version: "3.6.0",
 				},
 				Storage: types.Storage{
 					Filesystems: []types.Filesystem{
@@ -1157,7 +1157,7 @@ RequiredBy=swap.target`),
 			},
 			types.Config{
 				Ignition: types.Ignition{
-					Version: "3.6.0-experimental",
+					Version: "3.6.0",
 				},
 				Storage: types.Storage{
 					Filesystems: []types.Filesystem{
@@ -1899,7 +1899,7 @@ func TestTranslateIgnition(t *testing.T) {
 		{
 			Ignition{},
 			types.Ignition{
-				Version: "3.6.0-experimental",
+				Version: "3.6.0",
 			},
 		},
 		{
@@ -1916,7 +1916,7 @@ func TestTranslateIgnition(t *testing.T) {
 				},
 			},
 			types.Ignition{
-				Version: "3.6.0-experimental",
+				Version: "3.6.0",
 				Config: types.IgnitionConfig{
 					Merge: []types.Resource{
 						{
@@ -1939,7 +1939,7 @@ func TestTranslateIgnition(t *testing.T) {
 				},
 			},
 			types.Ignition{
-				Version: "3.6.0-experimental",
+				Version: "3.6.0",
 				Proxy: types.Proxy{
 					HTTPProxy: util.StrToPtr("https://example.com:8080"),
 					NoProxy:   []types.NoProxyItem{types.NoProxyItem("example.com")},
@@ -1959,7 +1959,7 @@ func TestTranslateIgnition(t *testing.T) {
 				},
 			},
 			types.Ignition{
-				Version: "3.6.0-experimental",
+				Version: "3.6.0",
 				Security: types.Security{
 					TLS: types.TLS{
 						CertificateAuthorities: []types.Resource{
@@ -2011,7 +2011,7 @@ func TestTranslateKernelArguments(t *testing.T) {
 			},
 			types.Config{
 				Ignition: types.Ignition{
-					Version: "3.6.0-experimental",
+					Version: "3.6.0",
 				},
 				KernelArguments: types.KernelArguments{
 					ShouldExist: []types.KernelArgument{
@@ -2071,7 +2071,7 @@ func TestTranslateTang(t *testing.T) {
 			},
 			types.Config{
 				Ignition: types.Ignition{
-					Version: "3.6.0-experimental",
+					Version: "3.6.0",
 				},
 				Storage: types.Storage{
 					Filesystems: []types.Filesystem{
@@ -2501,7 +2501,7 @@ func TestToIgn3_6(t *testing.T) {
 			Config{},
 			types.Config{
 				Ignition: types.Ignition{
-					Version: "3.6.0-experimental",
+					Version: "3.6.0",
 				},
 			},
 		},

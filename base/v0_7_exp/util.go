@@ -18,7 +18,7 @@ import (
 	common "github.com/coreos/butane/config/common"
 	"github.com/coreos/ignition/v2/config/shared/errors"
 	"github.com/coreos/ignition/v2/config/util"
-	"github.com/coreos/ignition/v2/config/v3_6_experimental/types"
+	"github.com/coreos/ignition/v2/config/v3_6/types"
 	"github.com/coreos/ignition/v2/config/validate"
 	"github.com/coreos/vcontext/path"
 	"github.com/coreos/vcontext/report"

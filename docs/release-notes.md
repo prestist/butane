@@ -4,7 +4,7 @@ nav_order: 9
 
 # Release notes
 
-## Upcoming Butane 0.27.0 (unreleased)
+## Upcoming Butane 0.28.0 (unreleased)
 
 ### Breaking changes
 
@@ -16,13 +16,21 @@ nav_order: 9
 
 ### Docs changes
 
-- Re-vendor latest ignition release; 3.6.0-experimental becomes 3.6.0
+
+## Butane 0.27.0 (2026-02-27)
+
+### Features
+
 - Stabilize Fcos spec 1.7.0, targeting Ignition spec 3.6.0
 - Add Fcos spec 1.8.0-experimental, targeting Ignition spec 3.7.0-experimental
 - Update Flatcar spec 1.2.0-experimental to target Ignition spec 3.7.0-experimental
 - Update Fiot spec 1.1.0-experimental to target Ignition spec 3.7.0-experimental
 - Update R4E spec 1.2.0-experimental to target Ignition spec 3.7.0-experimental
 - Update OpenShift spec 4.22.0-experimental to target Ignition spec 3.7.0-experimental
+
+### Docs changes
+
+- Re-vendor latest ignition release; 3.6.0-experimental becomes 3.6.0
 
 
 ## Butane 0.26.0 (2026-01-16)
